@@ -45,16 +45,18 @@ def decode_urldecode(s):
 
 
 def notify(title, message):
-    if not CONFIG.SCKEY:
-        log.info("未配置SCKEY,正在跳过推送")
+    if not CONFIG.TG_BOT_TOKEN:
+        log.info("未配置TG_BOT_TOKEN,正在跳过推送")
         return
 
     log.info("准备推送通知...")
     urlencode = urllib.parse.urlencode
-    url = 'https://sctapi.ftqq.com/{}.send?{}&{}'.format(CONFIG.SCKEY, urlencode({'title': title}), urlencode({'desp': message}))
+    # url = 'https://sctapi.ftqq.com/{}.send?{}&{}'.format(CONFIG.SCKEY, urlencode({'title': title}), urlencode({'desp': message}))
+    url = 'https://api.telegram.org/bot{}/sendMessage'.format(CONFIG.TG_BOT_TOKEN)
+    data = 'chat_id={}&text={}\n\n{}&disable_web_page_preview=true'.format(CONFIG.TG_USER_ID,title,message)
 
     try:
-        response = to_python(requests.post(url).text)
+        response = to_python(requests.post(url,data=data).text)
         # {"code":0,"message":"","data":{"pushid":"1111","readkey":"xxxx","error":"SUCCESS","errno":0}}
         log.info('推送结果: {}'.format(response.get('data', {'error': 'no data'}).get('error', '')))
     except Exception as e:
