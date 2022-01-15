@@ -54,11 +54,12 @@ def notify(title, message):
     # url = 'https://sctapi.ftqq.com/{}.send?{}&{}'.format(CONFIG.SCKEY, urlencode({'title': title}), urlencode({'desp': message}))
     url = 'https://api.telegram.org/bot{}/sendMessage'.format(CONFIG.TG_BOT_TOKEN)
     data = 'chat_id={}&text={}\n\n{}&disable_web_page_preview=true'.format(CONFIG.TG_USER_ID,title,message)
+    headers = {'Content-Type': 'application/x-www-form-urlencoded'}
 
     try:
-        response = to_python(requests.post(url,data=data).text)
+        response = requests.post(url = url,headers = headers,data = data).json()
         # {"code":0,"message":"","data":{"pushid":"1111","readkey":"xxxx","error":"SUCCESS","errno":0}}
-        log.info('推送结果: {}'.format(response.get('data', {'error': 'no data'}).get('error', '')))
+        log.info('推送结果: {}'.format(response.get('ok'))
     except Exception as e:
         log.error('{}: {}'.format("推送异常", e))
     return log.info('任务结束')
