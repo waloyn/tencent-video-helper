@@ -59,7 +59,7 @@ def notify(title, message):
     try:
         response = requests.post(url = url,headers = headers,data = data).json()
         # {"code":0,"message":"","data":{"pushid":"1111","readkey":"xxxx","error":"SUCCESS","errno":0}}
-        log.info('推送结果: {}'.format(response.get('ok'))
+        log.info('推送结果: {}'.format(response.get('ok')))
     except Exception as e:
         log.error('{}: {}'.format("推送异常", e))
     return log.info('任务结束')
