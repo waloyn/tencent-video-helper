@@ -21,6 +21,8 @@ default_user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.
 class _Config:
     AUTH_REFRESH_URL = os.environ['AUTH_REFRESH_URL']
     AUTH_REFRESH_COOKIE: dict = os.environ['AUTH_REFRESH_COOKIE']
+    TG_BOT_TOKEN = os.environ['TG_BOT_TOKEN']
+    TG_USER_ID = os.environ['TG_USER_ID']
     HEADERS = {
         'Referer': 'https://v.qq.com',
         'User-Agent': default_user_agent,
@@ -28,7 +30,7 @@ class _Config:
     }
     SIGN_URL = 'https://vip.video.qq.com/fcgi-bin/comm_cgi?name=hierarchical_task_system&cmd=2'
     MOBILE_CHECKIN = 'http://v.qq.com/x/bu/mobile_checkin?isDarkMode=0&uiType=REGULAR'
-    SCKEY = os.environ.get('SCKEY', '')
+    # SCKEY = os.environ.get('SCKEY', '')
 
 
 class ProductionConfig(_Config):
