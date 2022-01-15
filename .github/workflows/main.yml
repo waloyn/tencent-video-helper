@@ -2,13 +2,14 @@ name: "Tencent Video Helper"
 
 on:
   schedule:
-    - cron: "0 1 * * *"  # scheduled at 09:00 (UTC+8) everyday
+    - cron: "0 15 * * *"  # scheduled at 23:00 (UTC+8) everyday
   workflow_dispatch:
 
 env:
   RUN_ENV: 'prod'
   TZ: 'Asia/Shanghai'
-  SCKEY: ${{ secrets.SCKEY }}
+  TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+  TG_USER_ID: ${{ secrets.TG_USER_ID}}
   AUTH_REFRESH_URL: ${{ secrets.AUTH_REFRESH_URL }}
   AUTH_REFRESH_COOKIE: ${{ secrets.AUTH_REFRESH_COOKIE }}
 
