@@ -53,7 +53,7 @@ def notify(title, message):
     urlencode = urllib.parse.urlencode
     # url = 'https://sctapi.ftqq.com/{}.send?{}&{}'.format(CONFIG.SCKEY, urlencode({'title': title}), urlencode({'desp': message}))
     url = 'https://api.telegram.org/bot{}/sendMessage'.format(CONFIG.TG_BOT_TOKEN)
-    data = 'chat_id={}&text={}\n\n{}&disable_web_page_preview=true'.format(CONFIG.TG_USER_ID,title,message)
+    data = 'chat_id={}&text={}\n\n{}&disable_web_page_preview=true'.format(CONFIG.TG_USER_ID,title.encode('utf-8'),message.encode('utf-8'))
     headers = {'Content-Type': 'application/x-www-form-urlencoded'}
 
     try:
