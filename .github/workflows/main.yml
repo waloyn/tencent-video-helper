@@ -2,7 +2,7 @@ name: "Tencent Video Helper"
 
 on:
   schedule:
-    - cron: "0 15 * * *"  # scheduled at 23:00 (UTC+8) everyday
+    - cron: "0 0,15 * * *"  # scheduled at 23:00 (UTC+8) everyday
   workflow_dispatch:
 
 env:
